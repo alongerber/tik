@@ -1,7 +1,6 @@
 import { useCallback } from 'react'
 import { useDropzone } from 'react-dropzone'
-import { Upload, FileText } from 'lucide-react'
-import Button from '../../shared/Button'
+import { Upload, FileText, Sparkles } from 'lucide-react'
 
 export default function DropZone({ onFileSelect, onTryExample, isLoading, currentFile }) {
   const onDrop = useCallback((acceptedFiles) => {
@@ -26,35 +25,38 @@ export default function DropZone({ onFileSelect, onTryExample, isLoading, curren
     <div className="flex flex-col h-full">
       <div
         {...getRootProps()}
-        className={`flex-1 flex flex-col items-center justify-center p-8 border-2 border-dashed rounded-lg cursor-pointer transition-colors ${
+        className={`flex-1 flex flex-col items-center justify-center p-8 border-2 border-dashed rounded-xl cursor-pointer transition-all duration-300 ${
           isDragActive
-            ? 'border-[#3b82f6] bg-blue-50'
-            : 'border-gray-300 hover:border-[#3b82f6] hover:bg-gray-50'
+            ? 'border-blue-500 bg-blue-500/10'
+            : 'border-gray-600 hover:border-blue-500 hover:bg-white/5'
         } ${isLoading ? 'opacity-50 cursor-not-allowed' : ''}`}
       >
         <input {...getInputProps()} />
 
         {currentFile ? (
           <div className="text-center">
-            <FileText className="w-12 h-12 text-[#3b82f6] mx-auto mb-3" />
-            <p className="text-[#1e3a5f] font-medium mb-1">{currentFile.name}</p>
+            <FileText className="w-16 h-16 text-blue-400 mx-auto mb-4" />
+            <p className="text-white font-medium mb-1">{currentFile.name}</p>
             <p className="text-sm text-gray-500">
               {(currentFile.size / 1024).toFixed(1)} KB
             </p>
-            <p className="text-sm text-gray-400 mt-2">Drop another file to replace</p>
+            <p className="text-sm text-gray-500 mt-3">גררו קובץ אחר להחלפה</p>
           </div>
         ) : (
           <div className="text-center">
-            <Upload className="w-12 h-12 text-gray-400 mx-auto mb-3" />
+            <Upload className="w-16 h-16 text-gray-500 mx-auto mb-4" />
             {isDragActive ? (
-              <p className="text-[#3b82f6] font-medium">Drop the file here</p>
+              <p className="text-blue-400 font-medium text-lg">שחררו את הקובץ כאן</p>
             ) : (
               <>
-                <p className="text-gray-600 mb-1">
-                  Drop PDF or image here, or click to upload
+                <p className="text-gray-300 mb-2 text-lg">
+                  גררו PDF או תמונה לכאן
                 </p>
-                <p className="text-sm text-gray-400">
-                  Supports PNG, JPG, WebP, PDF
+                <p className="text-gray-500">
+                  או לחצו לבחירת קובץ
+                </p>
+                <p className="text-sm text-gray-600 mt-3">
+                  תומך ב-PNG, JPG, WebP, PDF
                 </p>
               </>
             )}
@@ -62,15 +64,15 @@ export default function DropZone({ onFileSelect, onTryExample, isLoading, curren
         )}
       </div>
 
-      <div className="mt-4 pt-4 border-t border-gray-200">
-        <Button
-          variant="outline"
-          className="w-full"
+      <div className="mt-4 pt-4 border-t border-white/10">
+        <button
           onClick={onTryExample}
           disabled={isLoading}
+          className="w-full btn-glow px-4 py-3 rounded-xl text-white font-medium flex items-center justify-center gap-2 disabled:opacity-50"
         >
-          Try with Example Invoice
-        </Button>
+          <Sparkles className="w-4 h-4 relative z-10" />
+          <span className="relative z-10">נסו עם חשבונית לדוגמה</span>
+        </button>
       </div>
     </div>
   )

@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { ArrowLeft } from 'lucide-react'
+import { ArrowRight, FileText } from 'lucide-react'
 import DropZone from './DropZone'
 import ResultsDisplay from './ResultsDisplay'
 import LoadingSpinner from '../../shared/LoadingSpinner'
@@ -25,7 +25,6 @@ export default function DocumentProcessor() {
       setResults(response)
     } catch (err) {
       console.error('Document processing error:', err)
-      // Use mock response as fallback when API fails
       setResults(mockDocumentResponse)
     } finally {
       setIsLoading(false)
@@ -41,43 +40,48 @@ export default function DocumentProcessor() {
     setIsLoading(true)
     setError(null)
     setFile({ name: 'example-invoice.png', size: 45000 })
-
-    // Simulate processing delay for better UX
     await new Promise((resolve) => setTimeout(resolve, 1500))
-
-    // Use mock response for example
     setResults(mockDocumentResponse)
     setIsLoading(false)
   }
 
   return (
-    <div className="min-h-screen bg-[#f8fafc]">
+    <div className="min-h-screen pt-20">
       <div className="max-w-6xl mx-auto px-6 py-8">
         <Link
           to="/"
-          className="inline-flex items-center gap-2 text-gray-600 hover:text-[#1e3a5f] mb-6 transition-colors"
+          className="inline-flex items-center gap-2 text-gray-400 hover:text-white mb-8 transition-colors"
         >
-          <ArrowLeft className="w-4 h-4" />
-          Back to Home
+          <ArrowRight className="w-4 h-4" />
+          חזרה לדף הבית
         </Link>
 
-        <div className="mb-8">
-          <h1 className="text-3xl font-bold text-[#1e3a5f] mb-2">
-            Smart Document Processor
-          </h1>
-          <p className="text-gray-600">
-            Extract structured data from invoices, POs, and contracts automatically
-          </p>
+        <div className="mb-10">
+          <div className="flex items-center gap-4 mb-4">
+            <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-blue-500 to-cyan-500 p-0.5">
+              <div className="w-full h-full bg-slate-900 rounded-xl flex items-center justify-center">
+                <FileText className="w-7 h-7 text-white" />
+              </div>
+            </div>
+            <div>
+              <h1 className="text-3xl md:text-4xl font-bold gradient-text">
+                מעבד מסמכים חכם
+              </h1>
+              <p className="text-gray-400 mt-1">
+                חילוץ נתונים מובנים מחשבוניות, הזמנות רכש וחוזים באופן אוטומטי
+              </p>
+            </div>
+          </div>
         </div>
 
         {error && (
-          <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg text-red-700">
+          <div className="mb-6 p-4 glass border border-red-500/50 rounded-xl text-red-400">
             {error}
           </div>
         )}
 
         <div className="grid lg:grid-cols-2 gap-8">
-          <div className="bg-white rounded-xl border border-gray-200 p-6 min-h-[400px]">
+          <div className="glass-card rounded-2xl p-6 min-h-[450px]">
             <DropZone
               onFileSelect={handleFileSelect}
               onTryExample={handleTryExample}
@@ -86,11 +90,11 @@ export default function DocumentProcessor() {
             />
           </div>
 
-          <div className="bg-white rounded-xl border border-gray-200 p-6 min-h-[400px]">
+          <div className="glass-card rounded-2xl p-6 min-h-[450px]">
             {isLoading ? (
               <div className="flex flex-col items-center justify-center h-full gap-4">
                 <LoadingSpinner size="lg" />
-                <p className="text-gray-500">Analyzing document...</p>
+                <p className="text-gray-400">מנתח מסמך...</p>
               </div>
             ) : (
               <ResultsDisplay data={results} />

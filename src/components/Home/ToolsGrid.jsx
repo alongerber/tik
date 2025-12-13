@@ -1,73 +1,86 @@
 import { Link } from 'react-router-dom'
-import { FileText, Mail, Users, FileEdit } from 'lucide-react'
-import Button from '../shared/Button'
+import { FileText, Mail, Users, FileEdit, ArrowLeft, Sparkles } from 'lucide-react'
 
 export default function ToolsGrid() {
   const tools = [
     {
       icon: FileText,
-      title: 'Smart Document Processor',
-      description: 'Extract structured data from invoices, POs, and contracts automatically.',
+      title: 'מעבד מסמכים חכם',
+      description: 'חילוץ נתונים מובנים מחשבוניות, הזמנות רכש וחוזים באופן אוטומטי באמצעות AI.',
       path: '/tools/documents',
+      gradient: 'from-blue-500 to-cyan-500',
     },
     {
       icon: Mail,
-      title: 'Email Command Center',
-      description: 'Turn chaotic emails into clear action items with priority and tags.',
+      title: 'מרכז פיקוד אימיילים',
+      description: 'הפיכת אימיילים כאוטיים לרשימת משימות ברורה עם עדיפויות ותגיות.',
       path: '/tools/email',
+      gradient: 'from-purple-500 to-pink-500',
     },
     {
       icon: Users,
-      title: 'Meeting-to-Action Converter',
-      description: 'Transform meeting transcripts into summaries, decisions, and tasks.',
+      title: 'ממיר פגישות לפעולות',
+      description: 'הפיכת תמלולי פגישות לסיכומים, החלטות ומשימות מובנות.',
       path: '/tools/meetings',
+      gradient: 'from-orange-500 to-red-500',
     },
     {
       icon: FileEdit,
-      title: 'Proposal Draft Generator',
-      description: 'Create professional proposals in seconds from simple inputs.',
+      title: 'מחולל הצעות מחיר',
+      description: 'יצירת הצעות מחיר מקצועיות תוך שניות מקלט פשוט.',
       path: '/tools/proposals',
+      gradient: 'from-green-500 to-teal-500',
     },
   ]
 
   return (
-    <section className="py-16 md:py-20">
+    <section className="relative py-24">
       <div className="max-w-6xl mx-auto px-6">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-[#1e3a5f] mb-4">
-            Automation Tools
+        {/* Section header */}
+        <div className="text-center mb-16">
+          <div className="inline-flex items-center gap-2 px-4 py-2 glass rounded-full mb-6 text-sm text-purple-300">
+            <Sparkles className="w-4 h-4" />
+            מופעל על ידי AI
+          </div>
+          <h2 className="text-4xl md:text-5xl font-bold mb-6">
+            <span className="gradient-text">כלי אוטומציה</span>
           </h2>
-          <p className="text-gray-600 max-w-2xl mx-auto">
-            Interactive demonstrations of AI-powered tools that automate common business operations.
-            Each tool works in under 30 seconds.
+          <p className="text-xl text-gray-400 max-w-2xl mx-auto">
+            הדגמות אינטראקטיביות של כלים מבוססי AI שמייעלים תהליכים עסקיים.
+            <br />
+            <span className="text-gray-300">כל כלי עובד תוך 30 שניות.</span>
           </p>
         </div>
 
+        {/* Tools grid */}
         <div className="grid md:grid-cols-2 gap-6">
           {tools.map((tool, index) => (
-            <div
+            <Link
               key={index}
-              className="bg-white rounded-xl border border-gray-200 p-6 hover:shadow-lg hover:border-[#3b82f6] transition-all duration-200"
+              to={tool.path}
+              className="group glass-card rounded-2xl p-8 card-shine block"
             >
-              <div className="flex items-start gap-4">
-                <div className="w-12 h-12 rounded-lg bg-[#1e3a5f]/10 flex items-center justify-center flex-shrink-0">
-                  <tool.icon className="w-6 h-6 text-[#1e3a5f]" />
-                </div>
-                <div className="flex-1">
-                  <h3 className="text-xl font-semibold text-[#1e3a5f] mb-2">
-                    {tool.title}
-                  </h3>
-                  <p className="text-gray-600 mb-4">
-                    {tool.description}
-                  </p>
-                  <Link to={tool.path}>
-                    <Button variant="primary" size="sm">
-                      Try it
-                    </Button>
-                  </Link>
+              {/* Icon with gradient background */}
+              <div className={`w-14 h-14 rounded-xl bg-gradient-to-br ${tool.gradient} p-0.5 mb-6`}>
+                <div className="w-full h-full bg-slate-900 rounded-xl flex items-center justify-center">
+                  <tool.icon className="w-7 h-7 text-white" />
                 </div>
               </div>
-            </div>
+
+              {/* Content */}
+              <h3 className="text-2xl font-bold text-white mb-3 group-hover:gradient-text transition-all duration-300">
+                {tool.title}
+              </h3>
+              <p className="text-gray-400 mb-6 leading-relaxed">
+                {tool.description}
+              </p>
+
+              {/* CTA */}
+              <div className="flex items-center gap-2 text-blue-400 group-hover:text-blue-300 transition-colors">
+                <span className="font-medium">נסו עכשיו</span>
+                <ArrowLeft className="w-4 h-4 group-hover:-translate-x-2 transition-transform" />
+              </div>
+            </Link>
           ))}
         </div>
       </div>

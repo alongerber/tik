@@ -1,69 +1,76 @@
 import { Link } from 'react-router-dom'
+import { Github, Linkedin, Mail } from 'lucide-react'
 
 export default function Footer() {
   const currentYear = new Date().getFullYear()
 
+  const tools = [
+    { name: 'מעבד מסמכים', path: '/tools/documents' },
+    { name: 'מרכז אימיילים', path: '/tools/email' },
+    { name: 'ממיר פגישות', path: '/tools/meetings' },
+    { name: 'מחולל הצעות', path: '/tools/proposals' },
+  ]
+
+  const socials = [
+    { icon: Mail, href: 'mailto:alon@example.com' },
+    { icon: Linkedin, href: 'https://linkedin.com/in/alongerber' },
+    { icon: Github, href: 'https://github.com/alongerber' },
+  ]
+
   return (
-    <footer className="bg-[#1e3a5f] text-white py-12">
-      <div className="max-w-6xl mx-auto px-6">
-        <div className="grid md:grid-cols-3 gap-8 mb-8">
+    <footer className="relative border-t border-white/10">
+      <div className="max-w-6xl mx-auto px-6 py-16">
+        <div className="grid md:grid-cols-3 gap-12 mb-12">
+          {/* Brand */}
           <div>
-            <h3 className="text-lg font-semibold mb-4">Alon Gerber</h3>
-            <p className="text-blue-200 text-sm leading-relaxed">
-              Operations Automation Specialist with 14 years of experience
-              transforming manual processes into efficient automated solutions.
+            <h3 className="text-2xl font-bold gradient-text mb-4">אלון גרבר</h3>
+            <p className="text-gray-400 leading-relaxed">
+              מומחה אוטומציה תפעולית עם 9 שנות ניסיון בהפיכת תהליכים ידניים לפתרונות אוטומטיים יעילים.
             </p>
           </div>
 
+          {/* Tools */}
           <div>
-            <h3 className="text-lg font-semibold mb-4">Tools</h3>
-            <nav className="flex flex-col gap-2">
-              <Link to="/tools/documents" className="text-blue-200 hover:text-white transition-colors text-sm">
-                Document Processor
-              </Link>
-              <Link to="/tools/email" className="text-blue-200 hover:text-white transition-colors text-sm">
-                Email Command Center
-              </Link>
-              <Link to="/tools/meetings" className="text-blue-200 hover:text-white transition-colors text-sm">
-                Meeting Converter
-              </Link>
-              <Link to="/tools/proposals" className="text-blue-200 hover:text-white transition-colors text-sm">
-                Proposal Generator
-              </Link>
+            <h3 className="text-lg font-semibold text-white mb-4">כלים</h3>
+            <nav className="flex flex-col gap-3">
+              {tools.map((tool) => (
+                <Link
+                  key={tool.path}
+                  to={tool.path}
+                  className="text-gray-400 hover:text-blue-400 transition-colors"
+                >
+                  {tool.name}
+                </Link>
+              ))}
             </nav>
           </div>
 
+          {/* Social */}
           <div>
-            <h3 className="text-lg font-semibold mb-4">Connect</h3>
-            <nav className="flex flex-col gap-2">
-              <a
-                href="mailto:alon@example.com"
-                className="text-blue-200 hover:text-white transition-colors text-sm"
-              >
-                alon@example.com
-              </a>
-              <a
-                href="https://linkedin.com/in/alongerber"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-blue-200 hover:text-white transition-colors text-sm"
-              >
-                LinkedIn
-              </a>
-              <a
-                href="https://github.com/alongerber"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-blue-200 hover:text-white transition-colors text-sm"
-              >
-                GitHub
-              </a>
-            </nav>
+            <h3 className="text-lg font-semibold text-white mb-4">עקבו אחריי</h3>
+            <div className="flex gap-4">
+              {socials.map((social, index) => (
+                <a
+                  key={index}
+                  href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-10 h-10 glass rounded-lg flex items-center justify-center text-gray-400 hover:text-white hover:bg-white/10 transition-all"
+                >
+                  <social.icon className="w-5 h-5" />
+                </a>
+              ))}
+            </div>
           </div>
         </div>
 
-        <div className="pt-8 border-t border-blue-400/30 text-center text-blue-200 text-sm">
-          {currentYear} Alon Gerber. All rights reserved.
+        <div className="pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4">
+          <p className="text-gray-500 text-sm">
+            {currentYear} אלון גרבר. כל הזכויות שמורות.
+          </p>
+          <p className="text-gray-600 text-sm">
+            נבנה עם React, Tailwind ו-Claude AI
+          </p>
         </div>
       </div>
     </footer>
