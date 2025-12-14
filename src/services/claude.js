@@ -71,3 +71,21 @@ export async function generateProposal(formData) {
 
   return response.json()
 }
+
+export async function askFAQBot(question, conversationHistory = []) {
+  const response = await fetch(`${API_BASE}/analyze`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      type: 'faq',
+      content: question,
+      history: conversationHistory,
+    }),
+  })
+
+  if (!response.ok) {
+    throw new Error('Failed to get FAQ response')
+  }
+
+  return response.json()
+}

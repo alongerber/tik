@@ -1,43 +1,17 @@
 import { useState, useRef, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { ArrowRight, MessageCircle, Send, User, Bot } from 'lucide-react'
+import { ArrowRight, MessageCircle, Send, User, Bot, Sparkles } from 'lucide-react'
 import BeforeAfter from '../../shared/BeforeAfter'
 import CaseStudy from '../../shared/CaseStudy'
-
-const faqDatabase = {
-  'מה התהליך לשחרור מכס': {
-    answer: 'תהליך שחרור מכס כולל: 1) הגשת רשימון יבוא למכס 2) בדיקת מסמכים (חשבון ספק, שטר מטען, תעודת מקור) 3) תשלום מיסים ואגרות 4) בדיקה פיזית (במידת הצורך) 5) שחרור המטען. זמן ממוצע: 2-3 ימי עבודה.',
-    relatedTopics: ['מסמכים נדרשים', 'עלויות מכס', 'זמני שחרור']
-  },
-  'איך מחשבים מכס': {
-    answer: 'חישוב מכס מבוסס על: ערך CIF (עלות + ביטוח + הובלה) × שיעור המכס לפי סיווג המוצר. לדוגמה: מוצר בערך $10,000 עם מכס 12% = $1,200. בנוסף יש מע"מ 17% על הסכום הכולל.',
-    relatedTopics: ['סיווג מוצרים', 'פטורים ממכס', 'הסכמי סחר']
-  },
-  'מה עושים כשיש עיכוב': {
-    answer: 'בעיכוב משלוח: 1) בדוק סטטוס באתר חברת הספנות 2) וודא שכל המסמכים הוגשו 3) בדוק אם יש בדיקה פיזית במכס 4) צור קשר עם הסוכן בנמל. טיפ: רוב העיכובים נגרמים ממסמכים חסרים - תמיד שלח רשימת בדיקה מראש.',
-    relatedTopics: ['מעקב משלוחים', 'תקשורת עם לקוחות', 'פיצויים']
-  },
-  'מהם זמני הובלה מסין': {
-    answer: 'זמני הובלה מסין לישראל: ימי (FCL) - 25-30 יום, ימי (LCL) - 30-35 יום, אווירי - 5-7 ימים, אקספרס - 3-4 ימים. הזמנים לא כוללים שחרור מכס. בתקופות עומס (לפני חגים סיניים) הוסף 5-7 ימים.',
-    relatedTopics: ['עלויות הובלה', 'בחירת נמל', 'ביטוח מטען']
-  },
-  'מה ההבדל בין FCL ל-LCL': {
-    answer: 'FCL (Full Container Load) - מכולה שלמה ללקוח אחד, משתלם מעל 15 קוב. LCL (Less than Container Load) - מטען משותף עם יבואנים אחרים, משתלם עד 10 קוב. FCL מהיר יותר ופחות סיכון לנזק, LCL גמיש יותר לכמויות קטנות.',
-    relatedTopics: ['גדלי מכולות', 'תמחור הובלה', 'אריזה למשלוח']
-  },
-  'איך מתמודדים עם נזק למטען': {
-    answer: 'בנזק למטען: 1) תעד הכל בתמונות מיד עם קבלה 2) רשום הסתייגות על שטר המטען 3) הגש תביעה לביטוח תוך 3 ימים 4) שמור את האריזה המקורית. חשוב: בלי תיעוד מיידי, קשה מאוד לקבל פיצוי.',
-    relatedTopics: ['ביטוח מטען', 'תביעות', 'מניעת נזקים']
-  }
-}
+import { askFAQBot } from '../../../services/claude'
 
 const suggestedQuestions = [
-  'מה התהליך לשחרור מכס',
-  'איך מחשבים מכס',
-  'מה עושים כשיש עיכוב',
-  'מהם זמני הובלה מסין',
-  'מה ההבדל בין FCL ל-LCL',
-  'איך מתמודדים עם נזק למטען'
+  'מה זה תנאי FOB ואיך זה משפיע עליי?',
+  'מה התהליך לשחרור מכס?',
+  'איך מחשבים עלויות מכס?',
+  'מה ההבדל בין FCL ל-LCL?',
+  'מהם זמני הובלה מסין לישראל?',
+  'מה עושים כשיש נזק למטען?'
 ]
 
 export default function FAQBot() {
@@ -59,44 +33,55 @@ export default function FAQBot() {
     scrollToBottom()
   }, [messages])
 
-  const findAnswer = (question) => {
-    const lowerQuestion = question.toLowerCase()
-    for (const [key, value] of Object.entries(faqDatabase)) {
-      if (lowerQuestion.includes(key.toLowerCase()) ||
-          key.toLowerCase().includes(lowerQuestion) ||
-          lowerQuestion.split(' ').some(word => key.toLowerCase().includes(word) && word.length > 3)) {
-        return value
-      }
-    }
-    return {
-      answer: 'שאלה טובה! בהקשר של לוגיסטיקה וספנות, זה תלוי בכמה גורמים. אשמח לפרט אם תשאל על נושא ספציפי יותר - למשל מכס, זמני הובלה, או תיעוד.',
-      relatedTopics: ['שחרור מכס', 'זמני הובלה', 'תיעוד משלוחים']
-    }
-  }
-
   const handleSend = async () => {
-    if (!input.trim()) return
+    if (!input.trim() || isTyping) return
 
     const userMessage = input.trim()
     setInput('')
     setMessages(prev => [...prev, { type: 'user', text: userMessage }])
     setIsTyping(true)
 
-    await new Promise(resolve => setTimeout(resolve, 1000 + Math.random() * 1000))
+    try {
+      // Call Claude API
+      const response = await askFAQBot(userMessage, messages)
 
-    const response = findAnswer(userMessage)
-    setIsTyping(false)
-    setMessages(prev => [...prev, {
-      type: 'bot',
-      text: response.answer,
-      relatedTopics: response.relatedTopics
-    }])
+      setMessages(prev => [...prev, {
+        type: 'bot',
+        text: response.answer,
+        relatedTopics: response.relatedTopics
+      }])
+    } catch (error) {
+      console.error('FAQ Bot error:', error)
+      // Fallback response if API fails
+      setMessages(prev => [...prev, {
+        type: 'bot',
+        text: 'מצטער, נתקלתי בבעיה טכנית. נסה שוב בעוד רגע, או שאל שאלה אחרת.',
+        relatedTopics: ['שחרור מכס', 'זמני הובלה', 'תנאי מכר']
+      }])
+    } finally {
+      setIsTyping(false)
+    }
   }
 
   const handleSuggestion = (question) => {
+    if (isTyping) return
     setInput(question)
-    setTimeout(() => handleSend(), 100)
+    // Use setTimeout to allow state to update before sending
+    setTimeout(() => {
+      const fakeEvent = { target: { value: question } }
+      setInput(question)
+    }, 0)
   }
+
+  // Separate effect to handle suggestion clicks
+  useEffect(() => {
+    if (input && !isTyping) {
+      const timer = setTimeout(() => {
+        handleSend()
+      }, 100)
+      return () => clearTimeout(timer)
+    }
+  }, [input])
 
   const handleKeyPress = (e) => {
     if (e.key === 'Enter' && !e.shiftKey) {
@@ -128,7 +113,7 @@ export default function FAQBot() {
                 עוזר נהלים פנימי
               </h1>
               <p className="text-gray-400 mt-1">
-                תשובות מיידיות על נהלי יבוא, מכס ולוגיסטיקה - בלי לחפש במיילים
+                תשובות מיידיות על נהלי יבוא, מכס ולוגיסטיקה - מופעל על ידי Claude
               </p>
             </div>
           </div>
@@ -171,7 +156,8 @@ export default function FAQBot() {
                           <button
                             key={j}
                             onClick={() => handleSuggestion(topic)}
-                            className="text-xs px-3 py-1 bg-slate-700/50 text-gray-400 rounded-full hover:bg-slate-700 hover:text-white transition-all"
+                            disabled={isTyping}
+                            className="text-xs px-3 py-1 bg-slate-700/50 text-gray-400 rounded-full hover:bg-slate-700 hover:text-white transition-all disabled:opacity-50"
                           >
                             {topic}
                           </button>
@@ -206,12 +192,13 @@ export default function FAQBot() {
                   value={input}
                   onChange={(e) => setInput(e.target.value)}
                   onKeyPress={handleKeyPress}
-                  placeholder="שאל שאלה על נהלים..."
-                  className="flex-1 bg-slate-800 border border-slate-700 rounded-xl px-4 py-3 text-white placeholder-gray-500 focus:border-purple-500 focus:outline-none"
+                  placeholder="שאל שאלה על יבוא, מכס, לוגיסטיקה..."
+                  disabled={isTyping}
+                  className="flex-1 bg-slate-800 border border-slate-700 rounded-xl px-4 py-3 text-white placeholder-gray-500 focus:border-purple-500 focus:outline-none disabled:opacity-50"
                 />
                 <button
                   onClick={handleSend}
-                  disabled={!input.trim()}
+                  disabled={!input.trim() || isTyping}
                   className="btn-glow px-4 py-3 rounded-xl text-white disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   <Send className="w-5 h-5 relative z-10" />
@@ -222,26 +209,33 @@ export default function FAQBot() {
 
           {/* Suggested Questions */}
           <div className="glass-card rounded-2xl p-6">
-            <h3 className="text-lg font-bold text-white mb-4">שאלות נפוצות</h3>
+            <div className="flex items-center gap-2 mb-4">
+              <Sparkles className="w-5 h-5 text-purple-400" />
+              <h3 className="text-lg font-bold text-white">נסו לשאול</h3>
+            </div>
             <div className="space-y-2">
               {suggestedQuestions.map((q, i) => (
                 <button
                   key={i}
                   onClick={() => handleSuggestion(q)}
-                  className="w-full text-right px-4 py-3 bg-slate-800/50 text-gray-300 rounded-lg hover:bg-slate-700 hover:text-white transition-all text-sm"
+                  disabled={isTyping}
+                  className="w-full text-right px-4 py-3 bg-slate-800/50 text-gray-300 rounded-lg hover:bg-slate-700 hover:text-white transition-all text-sm disabled:opacity-50"
                 >
                   {q}
                 </button>
               ))}
             </div>
+            <p className="text-xs text-gray-500 mt-4">
+              הבוט מופעל על ידי Claude ויכול לענות על כל שאלה בנושאי לוגיסטיקה, יבוא ומכס.
+            </p>
           </div>
         </div>
 
         <CaseStudy
           title="למה בניתי את זה"
           context="עובדים חדשים היו שואלים את אותן שאלות שוב ושוב. 'איך מחשבים מכס?' 'מה עושים כשיש עיכוב?'. במקום לענות בפעם ה-50, או לשלוח אותם לחפש במסמכים מפוזרים..."
-          solution="ריכזתי את כל הידע לבוט אחד שעונה מיד. כל תשובה מבוססת על ניסיון אמיתי מהשטח."
-          result="הכשרת עובד חדש ירדה מ-3 ימים ליום אחד. והכי חשוב - התשובות עקביות."
+          solution="בניתי בוט חכם שמבין שאלות בשפה טבעית ונותן תשובות מקצועיות מבוססות על 15 שנות ניסיון בתחום."
+          result="הכשרת עובד חדש ירדה מ-3 ימים ליום אחד. והכי חשוב - התשובות מקצועיות ועקביות."
         />
       </div>
     </div>

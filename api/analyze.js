@@ -41,6 +41,23 @@ Return ONLY valid JSON, no additional text.`,
 - terms: an array of 3-5 standard terms and conditions
 
 Return ONLY valid JSON, no additional text.`,
+
+  faq: `אתה עוזר מומחה בנושאי יבוא, מכס, לוגיסטיקה והובלה ימית בישראל.
+יש לך 15 שנות ניסיון בתחום הספנות, כולל עבודה ב-ZIM ובקוראל.
+
+ענה על השאלה בעברית, בצורה מקצועית אך נגישה.
+התשובה צריכה להיות:
+- ממוקדת ומעשית
+- עם דוגמאות רלוונטיות כשמתאים
+- באורך של 2-4 משפטים (לא יותר מדי ארוך)
+
+בסוף התשובה, הוסף 2-3 נושאים קשורים שאולי יעניינו את השואל.
+
+Return a JSON object with:
+- answer: התשובה בעברית
+- relatedTopics: מערך של 2-3 נושאים קשורים בעברית
+
+Return ONLY valid JSON, no additional text.`,
 }
 
 export default async function handler(req, res) {
@@ -99,6 +116,23 @@ Price: ${content.currency} ${content.price}
 ${PROMPTS.proposal}`,
         },
       ]
+    } else if (type === 'faq') {
+      // FAQ bot with conversation history
+      const history = req.body.history || []
+      messages = [
+        {
+          role: 'user',
+          content: `${PROMPTS.faq}\n\nשאלה: ${content}`,
+        },
+      ]
+      // Add conversation history if provided
+      if (history.length > 0) {
+        const historyContext = history
+          .slice(-4) // Last 4 messages for context
+          .map(m => `${m.type === 'user' ? 'שאלה' : 'תשובה'}: ${m.text}`)
+          .join('\n')
+        messages[0].content = `${PROMPTS.faq}\n\nהיסטוריית שיחה:\n${historyContext}\n\nשאלה חדשה: ${content}`
+      }
     } else {
       // Text-based analysis (email, meeting)
       messages = [

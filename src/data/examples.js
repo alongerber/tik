@@ -1,143 +1,148 @@
 // Example data for "Try Example" buttons
 
-export const exampleEmail = `Subject: URGENT - Q3 Budget Review + Client Meeting
+// Email example - Hebrew with shipping/logistics context
+export const exampleEmail = `נושא: דחוף - עיכוב במשלוח COSCO + תיאום מכס
 
-Hi,
+שלום,
 
-I need you to look at the Q3 budget proposal before our meeting with Sarah tomorrow at 2pm.
-There are some discrepancies in the marketing spend that don't match what we discussed last week.
+המשלוח של אלקטרה (BL: COSU6234567) צפוי להגיע מחר לנמל חיפה אבל יש בעיה.
+הסוכן בסין הודיע שחסר אישור מקור לטובין - בלי זה המכס לא ישחרר.
 
-Also, can you send me the updated revenue report by Friday? The board is asking for it and
-I promised them we'd have final numbers.
+צריך לטפל בזה היום:
+1. לקבל מאלקטרה את תעודת המקור המקורית
+2. לשלוח לעמיל המכס עד 14:00
+3. לעדכן את הלקוח על העיכוב הצפוי
 
-One more thing - please schedule a follow-up call with the Acme team. They mentioned some
-concerns about the delivery timeline and I want to address it before it becomes a bigger issue.
+בנוסף, יש פגישה עם שטראוס ביום ראשון בנושא החוזה החדש.
+צריך להכין סיכום של כל המשלוחים שלהם ב-Q4.
 
-Let me know if you have questions.
+תודה,
+משה`
 
-Thanks,
-John`
+// Meeting transcript - Hebrew
+export const exampleMeetingTranscript = `[תמלול פגישה - סיכום שבועי תפעול - 15 ינואר 2024]
 
-export const exampleMeetingTranscript = `[Meeting transcript - Weekly Team Sync - January 15, 2024]
+דני: בואו נתחיל. מה המצב עם המשלוח של טבע?
 
-Dan: Okay, let's get started. First item is the Q3 marketing budget. Sarah, where are we on that?
+רונית: המשלוח יצא מסין אתמול, צפוי להגיע ב-28. אבל יש בעיה עם התיעוד - חסר CO.
 
-Sarah: So I talked to finance and they approved the $50K we requested. We can move forward with the campaign.
+דני: מי אחראי על זה?
 
-Dan: Great. That's confirmed then. Now, about the product launch - I know we were targeting February but given the delays...
+רונית: אני כבר בקשר עם הספק, אמורים לשלוח היום.
 
-Mike: Yeah, the development team needs at least 6 more weeks. We're dealing with some integration issues.
+דני: טוב. מה עם הנושא של תעריפי ההובלה החדשים?
 
-Dan: Okay, so we're looking at March then. Let's make that official - launch is postponed to March 15th.
+יוסי: קיבלנו הצעה מ-MSC, הם מציעים הנחה של 15% על קו סין-ישראל. צריך להחליט עד סוף השבוע.
 
-Sarah: I'll update the timeline and send it to everyone by EOD tomorrow.
+דני: כמה זה יחסוך לנו?
 
-Dan: Perfect. Last thing - we need to start the hiring process for the two developer positions. Mike, can you draft the job posting?
+יוסי: בערך 50,000 שקל בחודש על הנפחים שלנו.
 
-Mike: Sure, I'll have it ready by Friday.
+דני: נשמע טוב. בואו נאשר את זה. יוסי, תכין את החוזה.
 
-Dan: Great. Oh, one more thing - we still haven't decided on the vendor for the new CRM. Let's table that for next week. Also, we need to discuss Q4 targets but we're out of time. Let's add that to next week's agenda.
+רונית: עוד נושא - הלקוח החדש, אופטיקנה, רוצים לסגור על 10 משלוחים בחודש.
 
-Sarah: Sounds good. Anything else?
+דני: מצוין. מה עם המחירים?
 
-Dan: That's it. Thanks everyone.`
+רונית: עדיין במו"מ. נמשיך בשבוע הבא.
 
+דני: בסדר, זהו להיום.`
+
+// Proposal example - Hebrew company
 export const exampleProposal = {
-  clientName: 'Acme Corporation',
-  contactName: 'John Smith',
-  projectType: 'Consulting',
-  description: 'Process automation audit and implementation for the operations department. Review current workflows, identify automation opportunities, and implement solutions to reduce manual data entry by 50%.',
-  timeline: '1 month',
-  price: 15000,
-  currency: 'USD',
+  clientName: 'אלקטרה מוצרי צריכה',
+  contactName: 'דוד כהן',
+  projectType: 'ייעוץ',
+  description: 'ייעול תהליכי יבוא ושחרור מכס. סקירת תהליכים קיימים, זיהוי צווארי בקבוק, והטמעת פתרונות אוטומטיים לקיצור זמני שחרור ב-40%.',
+  timeline: 'חודש',
+  price: 45000,
+  currency: 'ILS',
 }
 
 // Mock responses for when API is not available
 export const mockDocumentResponse = {
-  document_type: 'Invoice',
+  document_type: 'חשבונית ספק',
   confidence: 0.96,
   fields: {
     document_number: 'INV-2024-0847',
-    date: '2024-01-15',
-    due_date: '2024-02-15',
-    vendor_name: 'Acme Supplies Ltd',
-    vendor_address: '123 Industrial Ave, Tel Aviv',
-    total_amount: 12450.00,
+    date: '15/01/2024',
+    due_date: '15/02/2024',
+    vendor_name: 'Shenzhen Electronics Ltd',
+    vendor_address: 'Guangdong, China',
+    total_amount: 47500.00,
     currency: 'USD',
   },
   line_items: [
-    { description: 'Widget A', quantity: 100, unit_price: 50, total: 5000 },
-    { description: 'Widget B', quantity: 50, unit_price: 149, total: 7450 },
+    { description: 'רכיבים אלקטרוניים - סוג A', quantity: 500, unit_price: 45, total: 22500 },
+    { description: 'רכיבים אלקטרוניים - סוג B', quantity: 250, unit_price: 100, total: 25000 },
   ],
 }
 
 export const mockEmailResponse = {
   priority: 'HIGH',
-  tags: ['urgent', 'client', 'finance', 'deadline'],
+  tags: ['דחוף', 'מכס', 'לקוח', 'תיעוד'],
   tasks: [
-    { task: 'Review Q3 budget proposal', deadline: 'Before tomorrow 2pm', assignee: null },
-    { task: 'Send updated revenue report', deadline: 'Friday', assignee: null },
-    { task: 'Schedule follow-up call with Acme team', deadline: 'ASAP', assignee: null },
+    { task: 'לקבל תעודת מקור מאלקטרה', deadline: 'היום', assignee: null },
+    { task: 'לשלוח לעמיל המכס עד 14:00', deadline: 'היום 14:00', assignee: null },
+    { task: 'לעדכן לקוח על עיכוב צפוי', deadline: 'היום', assignee: null },
+    { task: 'להכין סיכום Q4 לפגישה עם שטראוס', deadline: 'יום ראשון', assignee: null },
   ],
-  summary: 'John needs urgent review of Q3 budget before tomorrow\'s meeting with Sarah. Also requesting revenue report by Friday and a follow-up call with Acme regarding delivery concerns.',
-  suggested_reply: `Hi John,
+  summary: 'משלוח אלקטרה מעוכב בגלל תעודת מקור חסרה. נדרש טיפול דחוף היום. בנוסף, פגישה עם שטראוס ביום ראשון דורשת הכנת סיכום Q4.',
+  suggested_reply: `שלום משה,
 
-Thank you for the heads up. I'll review the Q3 budget proposal today and have my notes ready before tomorrow's 2pm meeting with Sarah.
+תודה על העדכון. אני מטפל בזה מיד.
 
-I'll send the updated revenue report by Thursday to give you time to review before Friday.
+1. יצרתי קשר עם אלקטרה - תעודת המקור תגיע עד 12:00
+2. אעביר לעמיל ישירות אחרי קבלה
+3. אעדכן את הלקוח על עיכוב של יום אחד
 
-I'll reach out to the Acme team today to schedule a call this week regarding the delivery timeline concerns.
+לגבי שטראוס - אכין את סיכום ה-Q4 עד יום חמישי לסקירה.
 
-Let me know if you need anything else before the meeting.
-
-Best,
-[Your name]`,
+אעדכן כשיש התקדמות.`
 }
 
 export const mockMeetingResponse = {
-  summary: 'Weekly team sync covering Q3 marketing budget approval, product launch postponement to March 15th, and initiation of hiring process for two developer positions.',
+  summary: 'סיכום שבועי תפעול: טיפול בתיעוד חסר למשלוח טבע, אישור הנחת MSC (חיסכון 50K/חודש), והתקדמות עם לקוח חדש אופטיקנה.',
   decisions: [
-    { decision: 'Approved $50K marketing budget for Q3 campaign', owner: 'Finance/Sarah' },
-    { decision: 'Product launch postponed from February to March 15th', owner: 'Team' },
-    { decision: 'Proceed with hiring two developer positions', owner: 'Mike' },
+    { decision: 'אושרה הצעת MSC - הנחה 15% על קו סין-ישראל', owner: 'יוסי' },
+    { decision: 'להמשיך מו"מ עם אופטיקנה', owner: 'רונית' },
   ],
   action_items: [
-    { task: 'Update timeline and distribute to team', owner: 'Sarah', deadline: 'EOD tomorrow' },
-    { task: 'Draft job posting for developer positions', owner: 'Mike', deadline: 'Friday' },
+    { task: 'לקבל CO מהספק בסין', owner: 'רונית', deadline: 'היום' },
+    { task: 'להכין חוזה MSC לחתימה', owner: 'יוסי', deadline: 'סוף השבוע' },
   ],
   open_questions: [
-    { question: 'Vendor selection for new CRM', status: 'Tabled for next week' },
-    { question: 'Q4 targets discussion', status: 'Added to next week\'s agenda' },
+    { question: 'תמחור סופי ללקוח אופטיקנה', status: 'ימשיך בשבוע הבא' },
   ],
 }
 
 export const mockProposalResponse = {
-  executive_summary: `This proposal outlines a comprehensive process automation engagement for Acme Corporation's operations department. Our approach combines thorough workflow analysis with practical automation implementation to achieve measurable efficiency gains.`,
+  executive_summary: `הצעה זו מפרטת תוכנית לייעול תהליכי היבוא ושחרור המכס של אלקטרה מוצרי צריכה. הגישה שלנו משלבת ניתוח מעמיק של התהליכים הקיימים עם הטמעת פתרונות אוטומטיים להשגת חיסכון משמעותי בזמן ובעלויות.`,
   scope_of_work: [
-    'Conduct detailed assessment of current operational workflows',
-    'Document all manual processes and data entry points',
-    'Identify high-impact automation opportunities',
-    'Design and implement automation solutions',
-    'Provide training and documentation for team adoption',
-    'Deliver post-implementation support and optimization',
+    'מיפוי מלא של תהליכי היבוא הקיימים',
+    'זיהוי צווארי בקבוק ונקודות כשל',
+    'תכנון פתרונות אוטומטיים מותאמים',
+    'הטמעת מערכות מעקב ובקרה',
+    'הדרכת צוות והטמעה',
+    'ליווי ותמיכה לאחר ההטמעה',
   ],
   deliverables: [
-    'Comprehensive workflow audit report',
-    'Automation opportunity matrix with ROI projections',
-    'Implemented automation solutions (minimum 3 processes)',
-    'User training materials and documentation',
-    'Post-implementation performance report',
+    'דוח מיפוי תהליכים מפורט',
+    'תוכנית ייעול עם ROI צפוי',
+    'מערכת מעקב משלוחים אוטומטית',
+    'חומרי הדרכה לצוות',
+    'דוח ביצועים לאחר הטמעה',
   ],
   timeline_breakdown: [
-    { phase: 'Discovery & Assessment', duration: 'Week 1', description: 'Workflow mapping and opportunity identification' },
-    { phase: 'Design & Planning', duration: 'Week 2', description: 'Solution architecture and implementation plan' },
-    { phase: 'Implementation', duration: 'Week 3', description: 'Build and deploy automation solutions' },
-    { phase: 'Training & Handoff', duration: 'Week 4', description: 'Team training and documentation delivery' },
+    { phase: 'אפיון וניתוח', duration: 'שבוע 1', description: 'מיפוי תהליכים וזיהוי הזדמנויות' },
+    { phase: 'תכנון', duration: 'שבוע 2', description: 'עיצוב הפתרונות ותוכנית הטמעה' },
+    { phase: 'הטמעה', duration: 'שבוע 3', description: 'בניית והפעלת המערכות' },
+    { phase: 'הדרכה', duration: 'שבוע 4', description: 'הדרכת צוות ומסירה' },
   ],
   terms: [
-    'Payment: 50% upon signing, 50% upon completion',
-    'Changes to scope may affect timeline and pricing',
-    'Client to provide access to relevant systems and stakeholders',
-    'All deliverables remain property of client upon final payment',
+    'תשלום: 50% בחתימה, 50% בסיום',
+    'שינויים בהיקף עלולים להשפיע על לו"ז ומחיר',
+    'הלקוח יספק גישה למערכות ולאנשי מפתח',
+    'כל התוצרים עוברים לבעלות הלקוח בתשלום מלא',
   ],
 }
