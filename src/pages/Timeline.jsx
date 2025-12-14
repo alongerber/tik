@@ -4,84 +4,57 @@ import { useState } from 'react'
 
 const timelineEvents = [
   {
-    year: '2016',
-    title: 'התחלה בקוראל',
-    role: 'רכז תפעול',
-    description: 'הצטרפתי לצוות התפעול. התחלתי ללמוד את עולם הספנות מאפס - תיעוד מכס, תיאום משלוחים, עבודה מול נמלים.',
-    icon: Briefcase,
-    achievement: 'למדתי 3 מערכות תוך חודשיים',
+    year: '2008',
+    title: 'הולנד - בקרת איכות',
+    role: 'מתאם קשרי חברות ובקרת איכות',
+    description: 'בורסת הפרחים באלסמיר. פיקוח ובקרת איכות על שרשרת אספקה גלובלית בסביבה רב-תרבותית. כאן למדתי מה זה לוגיסטיקה בינלאומית.',
+    icon: Award,
+    achievement: 'ניהול QC לשרשרת אספקה גלובלית',
     color: 'blue'
   },
   {
-    year: '2017',
-    title: 'הבעיה הראשונה שפתרתי',
-    role: 'רכז תפעול',
-    description: 'שמתי לב שכל יום אנחנו מעתיקים את אותם נתונים בין 3 מערכות. בניתי אקסל שעושה את זה אוטומטית.',
-    icon: Zap,
-    achievement: 'חיסכון של שעתיים ביום לצוות',
+    year: '2010',
+    title: 'מנהל תפעול - סכיפהול',
+    role: 'Operations Manager',
+    description: 'Agriver / פרחים ישיר - נמל התעופה סכיפהול, הולנד. ניהול תפעולי של מרלו"ג כולל הובלת צוות של 20 עובדים. תכנון קווי הפצה בינלאומיים.',
+    icon: Briefcase,
+    achievement: 'ניהול צוות 20 עובדים',
     color: 'emerald'
   },
   {
-    year: '2018',
-    title: 'התמחות בתיעוד מכס',
-    role: 'רכז תפעול בכיר',
-    description: 'התמקדתי בתהליכי שחרור מכס. הפכתי למומחה הצוות בכל מה שקשור לתיעוד יבוא ופטורים.',
-    icon: Award,
-    achievement: 'צמצום טעויות בתיעוד ב-60%',
+    year: '2012',
+    title: 'ZIM - לקוחות אסטרטגיים',
+    role: 'מתאם לוגיסטיקה ולקוחות VIP',
+    description: 'צים, חיפה. ניהול תיקי לקוחות אסטרטגיים (Key Accounts) ותמחור הסכמים מסחריים מורכבים. ניהול שרשרת אספקה מקצה לקצה. במקביל - לימודי הנדסת תוכנה בטכניון.',
+    icon: Target,
+    achievement: 'ניהול Key Accounts + לימודים',
     color: 'purple'
   },
   {
-    year: '2019',
-    title: 'מערכת התראות ראשונה',
-    role: 'רכז תפעול בכיר',
-    description: 'בניתי מערכת שמתריעה על עיכובים צפויים לפי דפוסים שזיהיתי. התחלתי לראות את הכוח של נתונים.',
-    icon: Target,
-    achievement: 'זיהוי 80% מהעיכובים מראש',
-    color: 'amber'
-  },
-  {
-    year: '2020',
-    title: 'אוטומציה של דוחות',
-    role: 'רכז תפעול בכיר',
-    description: 'הפכתי את הדוח השבועי מ-3 שעות עבודה ל-5 דקות. המנהל ביקש שאציג את זה להנהלה.',
+    year: '2016',
+    title: 'קוראל - סוכן ספנות בכיר',
+    role: 'Senior Shipping Agent',
+    description: 'Coral Maritime Services, חיפה. ניהול אופרטיבי בכיר עבור 500+ אניות בשנה. אחריות ישירה על תיאום מול רשויות, פתרון משברים בזמן אמת, וניהול מו"מ מסחרי.',
     icon: TrendingUp,
-    achievement: 'חיסכון של 150 שעות בשנה',
+    achievement: '500+ אניות בשנה',
     color: 'cyan'
   },
   {
-    year: '2021',
-    title: 'כלים לכל הצוות',
-    role: 'רכז תפעול בכיר',
-    description: 'התחלתי לבנות כלים לא רק לעצמי. מערכת FAQ לעובדים חדשים, תבניות מסמכים, מחשבוני עלויות.',
-    icon: Zap,
-    achievement: 'הכשרת עובד חדש: מ-3 ימים ליום',
-    color: 'blue'
-  },
-  {
-    year: '2022',
-    title: 'גילוי כלי ה-AI',
-    role: 'רכז תפעול בכיר',
-    description: 'התחלתי להשתמש בכלים חדשים שמאפשרים לבנות פתרונות בלי קוד. הבנתי שהגבול היחיד הוא הדמיון.',
-    icon: Zap,
-    achievement: 'בנייה של 5 כלים חדשים תוך חודש',
-    color: 'purple'
-  },
-  {
     year: '2023',
-    title: 'חשיבה מערכתית',
-    role: 'רכז תפעול בכיר',
-    description: 'הפסקתי לחשוב על "פתרון בעיות" והתחלתי לחשוב על "בניית מערכות". לא לתקן - למנוע.',
-    icon: Target,
-    achievement: 'צמצום פניות חוזרות ב-40%',
-    color: 'emerald'
+    title: 'גילוי עולם האוטומציה',
+    role: 'Senior Shipping Agent & Automation Lead',
+    description: 'התחלתי לגלות כלים שמאפשרים לבנות פתרונות בלי רקע טכני. הבנתי שאפשר לקחת 15 שנות ניסיון תפעולי ולהפוך אותן לכלים שחוסכים זמן לכולם.',
+    icon: Zap,
+    achievement: 'בניית כלים פנימיים ראשונים',
+    color: 'amber'
   },
   {
     year: '2024',
-    title: 'תיק עבודות',
-    role: 'מחפש את האתגר הבא',
-    description: 'ריכזתי את כל הכלים והידע לתיק עבודות. הגיע הזמן להביא את הערך הזה למקום חדש.',
+    title: 'אוטומציה בקנה מידה',
+    role: 'Automation Lead',
+    description: 'פיתוח כלי אוטומציה In-House שחסכו לארגון 200,000 ₪ בשנה. קיצור זמן הפקת דוחות מ-4 שעות ל-12 דקות. עיבוד מניפסטים משעות לשניות.',
     icon: Award,
-    achievement: 'האתר הזה',
+    achievement: 'חיסכון 200,000 ₪ לארגון',
     color: 'gradient'
   }
 ]
@@ -105,7 +78,7 @@ export default function Timeline() {
             המסע שלי
           </h1>
           <p className="text-xl text-gray-400">
-            9 שנים של למידה, פתרון בעיות, ובניית כלים
+            15+ שנים של לוגיסטיקה בינלאומית, ניהול תפעול, ואוטומציה
           </p>
         </div>
 
@@ -164,10 +137,10 @@ export default function Timeline() {
         {/* Summary stats */}
         <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-4">
           {[
-            { value: '9', label: 'שנות ניסיון' },
-            { value: '500+', label: 'משלוחים בשנה' },
-            { value: '20+', label: 'כלים שנבנו' },
-            { value: '∞', label: 'בעיות שנפתרו' }
+            { value: '15+', label: 'שנות ניסיון' },
+            { value: '500+', label: 'אניות בשנה' },
+            { value: '3', label: 'מדינות' },
+            { value: '200K', label: '₪ חיסכון שנתי' }
           ].map((stat, i) => (
             <div key={i} className="glass-card rounded-xl p-4 text-center">
               <div className="text-3xl font-bold gradient-text">{stat.value}</div>
