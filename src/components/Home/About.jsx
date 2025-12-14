@@ -1,20 +1,17 @@
-import { Code, Cpu, Zap, Ship } from 'lucide-react'
+import { Bot, Cpu, Zap, Ship, Target, Workflow } from 'lucide-react'
 
 export default function About() {
-  const skills = [
-    { name: 'Python', level: 90 },
-    { name: 'JavaScript', level: 85 },
-    { name: 'React', level: 85 },
-    { name: 'Node.js', level: 80 },
-    { name: 'API Integration', level: 95 },
-    { name: 'Process Automation', level: 95 },
-    { name: 'AI/LLM Integration', level: 90 },
+  const capabilities = [
+    { name: 'זיהוי צווארי בקבוק', icon: Target },
+    { name: 'בניית פתרונות עם AI', icon: Bot },
+    { name: 'אוטומציה של תהליכים', icon: Workflow },
+    { name: 'חיבור בין מערכות', icon: Cpu },
   ]
 
   const highlights = [
     { icon: Ship, text: 'קוראל - ספנות ולוגיסטיקה בינלאומית' },
     { icon: Cpu, text: 'בניית מערכות אוטומציה מקצה לקצה' },
-    { icon: Code, text: 'פיתוח כלים מבוססי AI' },
+    { icon: Bot, text: 'שימוש בכלי AI להשגת תוצאות' },
     { icon: Zap, text: 'ייעול תהליכים תפעוליים' },
   ]
 
@@ -32,18 +29,19 @@ export default function About() {
             </h2>
 
             <p className="text-xl text-gray-300 font-medium mb-6">
-              מתפעול ספנות להנדסת אוטומציה.
+              מתפעול ספנות לאוטומציה מונעת AI.
             </p>
 
             <p className="text-gray-400 mb-6 leading-relaxed text-lg">
-              אחרי 9 שנים בקוראל - תיאום פעולות מטען בינלאומיות, ניהול לוחות זמנים של כלי שיט,
-              תיעוד מכס ולוגיסטיקה מול מחזיקי עניין מרובים בנמלי ישראל - גיליתי
-              שלרוב צווארי הבקבוק התפעוליים יש דבר אחד במשותף: אפשר לבצע אותם אוטומטית.
+              9 שנים בקוראל - תיאום מטען בינלאומי, ניהול לוחות זמנים של כלי שיט,
+              תיעוד מכס ולוגיסטיקה. למדתי לזהות את הבעיות התפעוליות שגוזלות הכי הרבה זמן.
             </p>
 
             <p className="text-gray-300 mb-8 leading-relaxed text-lg">
-              בניתי כלים שחסכו 20+ שעות עבודה ידנית בשבוע.
-              <span className="gradient-text font-medium"> עכשיו אני בונה אותם עבור אחרים.</span>
+              היום, עם כלי AI, אני יכול לבנות פתרונות שפעם דרשו צוות מפתחים -
+              <span className="gradient-text font-medium"> בלי לכתוב שורת קוד אחת.</span>
+              <br />
+              התוצאות? אותן תוצאות. הדרך? חדשה לגמרי.
             </p>
 
             {/* Highlights */}
@@ -57,24 +55,26 @@ export default function About() {
             </div>
           </div>
 
-          {/* Right side - Skills */}
+          {/* Right side - Capabilities */}
           <div className="glass-card rounded-2xl p-8">
-            <h3 className="text-xl font-bold text-white mb-6">טכנולוגיות</h3>
-            <div className="space-y-4">
-              {skills.map((skill, index) => (
-                <div key={index}>
-                  <div className="flex justify-between mb-2">
-                    <span className="text-gray-300">{skill.name}</span>
-                    <span className="text-gray-500">{skill.level}%</span>
-                  </div>
-                  <div className="h-2 bg-slate-700 rounded-full overflow-hidden">
-                    <div
-                      className="h-full bg-gradient-to-r from-blue-500 to-purple-500 rounded-full transition-all duration-1000"
-                      style={{ width: `${skill.level}%` }}
-                    />
-                  </div>
+            <h3 className="text-xl font-bold text-white mb-6">מה אני מביא לשולחן</h3>
+            <div className="grid grid-cols-2 gap-4">
+              {capabilities.map((cap, index) => (
+                <div key={index} className="flex flex-col items-center p-4 rounded-xl bg-slate-800/50 hover:bg-slate-700/50 transition-all">
+                  <cap.icon className="w-8 h-8 text-blue-400 mb-3" />
+                  <span className="text-gray-300 text-center text-sm">{cap.name}</span>
                 </div>
               ))}
+            </div>
+
+            <div className="mt-6 p-4 rounded-xl bg-gradient-to-r from-blue-500/10 to-purple-500/10 border border-blue-500/20">
+              <p className="text-gray-300 text-center text-sm">
+                <span className="gradient-text font-medium">הגישה שלי:</span>
+                <br />
+                לא צריך לדעת לתכנת כדי לבנות פתרונות.
+                <br />
+                צריך לדעת לשאול את השאלות הנכונות.
+              </p>
             </div>
           </div>
         </div>

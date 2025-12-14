@@ -62,7 +62,7 @@ export default function Hero() {
         {/* Badge */}
         <div className="inline-flex items-center gap-2 px-4 py-2 glass rounded-full mb-8 text-sm text-blue-300">
           <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
-          זמין לפרויקטים חדשים
+          מחפש את האתגר הבא
         </div>
 
         {/* Name */}
@@ -95,9 +95,9 @@ export default function Hero() {
 
         {/* Description */}
         <p className="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto mb-12 leading-relaxed">
-          בניתי כלי אוטומציה שחסכו מאות שעות עבודה ידנית.
+          9 שנים של ניסיון תפעולי לימדו אותי לזהות בעיות.
           <br />
-          <span className="text-gray-300">עכשיו אני בונה אותם עבורכם.</span>
+          <span className="text-gray-300">כלי AI מאפשרים לי לפתור אותן - בלי לכתוב שורת קוד.</span>
         </p>
 
         {/* CTA Buttons */}
