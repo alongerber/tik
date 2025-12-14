@@ -334,3 +334,12 @@ html.light .border-slate-700 {
 html.light ::-webkit-scrollbar-track {
   background: #f1f5f9;
 }
+
+/* Keep icon backgrounds dark and icons white in light mode */
+html.light .bg-slate-900 {
+  background-color: #1e293b;
+}
+
+html.light .bg-slate-900 .text-white {
+  color: #ffffff;
+}
