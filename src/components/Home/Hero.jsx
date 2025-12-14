@@ -50,7 +50,7 @@ export default function Hero() {
   }, [])
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center animated-bg overflow-hidden">
+    <section className="relative min-h-screen flex items-center justify-center animated-bg overflow-hidden pt-24">
       <Particles />
 
       {/* Gradient orbs */}
@@ -58,12 +58,6 @@ export default function Hero() {
       <div className="absolute bottom-1/4 left-1/4 w-96 h-96 bg-purple-500/20 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
 
       <div className={`relative z-10 max-w-5xl mx-auto px-6 text-center transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-
-        {/* Badge */}
-        <div className="inline-flex items-center gap-2 px-4 py-2 glass rounded-full mb-8 text-sm text-blue-300">
-          <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
-          מחפש את האתגר הבא
-        </div>
 
         {/* Name */}
         <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold mb-6">
