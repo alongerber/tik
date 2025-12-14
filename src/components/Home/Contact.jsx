@@ -1,12 +1,12 @@
-import { Mail, Linkedin, Github, Phone, Send } from 'lucide-react'
+import { Mail, Linkedin, Phone, Send, MessageCircle } from 'lucide-react'
 
 export default function Contact() {
   const contacts = [
     {
       icon: Mail,
       label: 'אימייל',
-      value: 'alon@example.com',
-      href: 'mailto:alon@example.com',
+      value: 'alongerber@gmail.com',
+      href: 'mailto:alongerber@gmail.com',
       gradient: 'from-blue-500 to-cyan-500',
     },
     {
@@ -17,18 +17,18 @@ export default function Contact() {
       gradient: 'from-blue-600 to-blue-400',
     },
     {
-      icon: Github,
-      label: 'גיטהאב',
-      value: 'alongerber',
-      href: 'https://github.com/alongerber',
-      gradient: 'from-gray-600 to-gray-400',
-    },
-    {
       icon: Phone,
       label: 'טלפון',
-      value: '+972-XX-XXX-XXXX',
-      href: 'tel:+972XXXXXXXX',
+      value: '052-4771113',
+      href: 'tel:052-4771113',
       gradient: 'from-green-500 to-emerald-500',
+    },
+    {
+      icon: MessageCircle,
+      label: 'וואטסאפ',
+      value: 'שלחו הודעה',
+      href: 'https://wa.me/972524771113?text=היי%20אלון,%20ראיתי%20את%20תיק%20העבודות%20שלך',
+      gradient: 'from-green-400 to-green-600',
     },
   ]
 

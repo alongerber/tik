@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { Github, Linkedin, Mail } from 'lucide-react'
+import { Linkedin, Mail, MessageCircle } from 'lucide-react'
 
 export default function Footer() {
   const currentYear = new Date().getFullYear()
@@ -12,9 +12,9 @@ export default function Footer() {
   ]
 
   const socials = [
-    { icon: Mail, href: 'mailto:alon@example.com' },
+    { icon: Mail, href: 'mailto:alongerber@gmail.com' },
     { icon: Linkedin, href: 'https://linkedin.com/in/alongerber' },
-    { icon: Github, href: 'https://github.com/alongerber' },
+    { icon: MessageCircle, href: 'https://wa.me/972524771113' },
   ]
 
   return (
@@ -25,7 +25,7 @@ export default function Footer() {
           <div>
             <h3 className="text-2xl font-bold gradient-text mb-4">אלון גרבר</h3>
             <p className="text-gray-400 leading-relaxed">
-              מומחה אוטומציה תפעולית עם 9 שנות ניסיון בהפיכת תהליכים ידניים לפתרונות אוטומטיים יעילים.
+              מומחה אוטומציה תפעולית עם 15+ שנות ניסיון בהפיכת תהליכים ידניים לפתרונות אוטומטיים יעילים.
             </p>
           </div>
 
@@ -47,7 +47,7 @@ export default function Footer() {
 
           {/* Social */}
           <div>
-            <h3 className="text-lg font-semibold text-white mb-4">עקבו אחריי</h3>
+            <h3 className="text-lg font-semibold text-white mb-4">צרו קשר</h3>
             <div className="flex gap-4">
               {socials.map((social, index) => (
                 <a
@@ -69,7 +69,7 @@ export default function Footer() {
             {currentYear} אלון גרבר. כל הזכויות שמורות.
           </p>
           <p className="text-gray-600 text-sm">
-            נבנה עם React, Tailwind ו-Claude AI
+            נבנה עם React ו-Tailwind
           </p>
         </div>
       </div>
