@@ -4,6 +4,8 @@ import { ArrowRight, FileText } from 'lucide-react'
 import DropZone from './DropZone'
 import ResultsDisplay from './ResultsDisplay'
 import LoadingSpinner from '../../shared/LoadingSpinner'
+import BeforeAfter from '../../shared/BeforeAfter'
+import CaseStudy from '../../shared/CaseStudy'
 import { analyzeDocument } from '../../../services/claude'
 import { fileToBase64, getMimeType } from '../../../utils/fileHandlers'
 import { mockDocumentResponse } from '../../../data/examples'
@@ -80,7 +82,18 @@ export default function DocumentProcessor() {
           </div>
         )}
 
-        <div className="grid lg:grid-cols-2 gap-8">
+        <BeforeAfter
+          before={{
+            time: '15 דקות',
+            description: 'פתיחת מסמך, קריאה, העתקה ידנית של שדות לאקסל, בדיקות'
+          }}
+          after={{
+            time: '10 שניות',
+            description: 'גרירת קובץ - כל הנתונים מחולצים ומוכנים'
+          }}
+        />
+
+        <div className="grid lg:grid-cols-2 gap-8 mt-8">
           <div className="glass-card rounded-2xl p-6 min-h-[450px]">
             <DropZone
               onFileSelect={handleFileSelect}
@@ -101,6 +114,13 @@ export default function DocumentProcessor() {
             )}
           </div>
         </div>
+
+        <CaseStudy
+          title="מאיפה זה בא"
+          context="כל יום היו מגיעות עשרות חשבוניות מספקים. מישהו היה צריך לפתוח כל אחת, להעתיק את המספרים לאקסל, לבדוק שהכל תקין. עבודה של שעות."
+          solution="בניתי כלי שמזהה אוטומטית את כל השדות הרלוונטיים בחשבונית ומוציא אותם לפורמט מובנה."
+          result="העבודה שלקחה 3 שעות ביום ירדה ל-20 דקות. ובלי טעויות העתקה."
+        />
       </div>
     </div>
   )

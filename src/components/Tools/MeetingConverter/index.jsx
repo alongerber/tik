@@ -2,6 +2,8 @@ import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { ArrowRight, Users, Sparkles, Check, HelpCircle, Copy } from 'lucide-react'
 import LoadingSpinner from '../../shared/LoadingSpinner'
+import BeforeAfter from '../../shared/BeforeAfter'
+import CaseStudy from '../../shared/CaseStudy'
 import { analyzeMeeting } from '../../../services/claude'
 import { exampleMeetingTranscript, mockMeetingResponse } from '../../../data/examples'
 
@@ -60,7 +62,18 @@ export default function MeetingConverter() {
           </div>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-8">
+        <BeforeAfter
+          before={{
+            time: '30 דקות',
+            description: 'האזנה להקלטה, רישום נקודות, ארגון לפי נושאים, שליחת סיכום'
+          }}
+          after={{
+            time: '20 שניות',
+            description: 'הדבקת תמלול - סיכום, החלטות ומשימות מוכנים'
+          }}
+        />
+
+        <div className="grid lg:grid-cols-2 gap-8 mt-8">
           {/* Input */}
           <div className="glass-card rounded-2xl p-6 min-h-[500px] flex flex-col">
             <textarea
@@ -168,6 +181,13 @@ export default function MeetingConverter() {
             )}
           </div>
         </div>
+
+        <CaseStudy
+          title="הסיפור מאחורי הכלי"
+          context="אחרי כל פגישה עם ספקים או לקוחות, הייתי צריך לכתוב סיכום. לפעמים זה לקח יותר זמן מהפגישה עצמה. והכי גרוע - משימות היו נשכחות כי הן 'טמונות' בתוך שיחה."
+          solution="כלי שמקבל תמלול (או הערות גסות) ומפיק סיכום מסודר עם החלטות ברורות ומשימות עם אחראים."
+          result="אפס משימות שנפלו בין הכיסאות. וסיכומים שיוצאים תוך דקה אחרי הפגישה."
+        />
       </div>
     </div>
   )

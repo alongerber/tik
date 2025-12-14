@@ -1,12 +1,12 @@
 import { Link } from 'react-router-dom'
-import { FileText, Mail, Users, FileEdit, ArrowLeft, Sparkles } from 'lucide-react'
+import { FileText, Mail, Users, FileEdit, ArrowLeft, Zap, BarChart3, MessageCircle } from 'lucide-react'
 
 export default function ToolsGrid() {
   const tools = [
     {
       icon: FileText,
       title: 'מעבד מסמכים חכם',
-      description: 'חילוץ נתונים מובנים מחשבוניות, הזמנות רכש וחוזים באופן אוטומטי באמצעות AI.',
+      description: 'חילוץ נתונים מובנים מחשבוניות, הזמנות רכש וחוזים באופן אוטומטי.',
       path: '/tools/documents',
       gradient: 'from-blue-500 to-cyan-500',
     },
@@ -31,6 +31,20 @@ export default function ToolsGrid() {
       path: '/tools/proposals',
       gradient: 'from-green-500 to-teal-500',
     },
+    {
+      icon: BarChart3,
+      title: 'מחולל דוחות שבועיים',
+      description: 'דוח מנהלים מוכן בלחיצת כפתור - עם גרפים, מגמות וחריגים.',
+      path: '/tools/reports',
+      gradient: 'from-emerald-500 to-teal-500',
+    },
+    {
+      icon: MessageCircle,
+      title: 'עוזר נהלים פנימי',
+      description: 'תשובות מיידיות על נהלי יבוא, מכס ולוגיסטיקה - בלי לחפש במיילים.',
+      path: '/tools/faq',
+      gradient: 'from-violet-500 to-purple-500',
+    },
   ]
 
   return (
@@ -39,21 +53,21 @@ export default function ToolsGrid() {
         {/* Section header */}
         <div className="text-center mb-16">
           <div className="inline-flex items-center gap-2 px-4 py-2 glass rounded-full mb-6 text-sm text-purple-300">
-            <Sparkles className="w-4 h-4" />
-            מופעל על ידי AI
+            <Zap className="w-4 h-4" />
+            אוטומציה בפעולה
           </div>
           <h2 className="text-4xl md:text-5xl font-bold mb-6">
             <span className="gradient-text">כלי אוטומציה</span>
           </h2>
           <p className="text-xl text-gray-400 max-w-2xl mx-auto">
-            הדגמות אינטראקטיביות של כלים מבוססי AI שמייעלים תהליכים עסקיים.
+            כלים שבניתי כדי לחסוך זמן על משימות שחוזרות על עצמן.
             <br />
-            <span className="text-gray-300">כל כלי עובד תוך 30 שניות.</span>
+            <span className="text-gray-300">לחצו "נסו דוגמה" - בלי צורך להעלות קבצים.</span>
           </p>
         </div>
 
         {/* Tools grid */}
-        <div className="grid md:grid-cols-2 gap-6">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {tools.map((tool, index) => (
             <Link
               key={index}

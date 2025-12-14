@@ -2,6 +2,8 @@ import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { ArrowRight, Mail, Sparkles, Copy, Check, Circle } from 'lucide-react'
 import LoadingSpinner from '../../shared/LoadingSpinner'
+import BeforeAfter from '../../shared/BeforeAfter'
+import CaseStudy from '../../shared/CaseStudy'
 import { analyzeEmail } from '../../../services/claude'
 import { exampleEmail, mockEmailResponse } from '../../../data/examples'
 
@@ -66,7 +68,18 @@ export default function EmailCenter() {
           </div>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-8">
+        <BeforeAfter
+          before={{
+            time: '45 דקות',
+            description: 'קריאת כל אימייל, זיהוי מה דחוף, רישום משימות בנפרד, ניסוח תשובות'
+          }}
+          after={{
+            time: '30 שניות',
+            description: 'הדבקה אחת - עדיפות, משימות ותשובה מוצעת מוכנות'
+          }}
+        />
+
+        <div className="grid lg:grid-cols-2 gap-8 mt-8">
           {/* Input */}
           <div className="glass-card rounded-2xl p-6 min-h-[500px] flex flex-col">
             <textarea
@@ -157,6 +170,13 @@ export default function EmailCenter() {
             )}
           </div>
         </div>
+
+        <CaseStudy
+          title="למה בניתי את זה"
+          context="בתקופות עמוסות היו מגיעים 50+ אימיילים ביום. חלקם דחופים, חלקם יכולים לחכות, וחלקם מכילים משימות מוסתרות בתוך הטקסט. היה קל לפספס דברים חשובים."
+          solution="כלי שקורא את האימייל, מזהה אוטומטית את רמת הדחיפות, מחלץ משימות ספציפיות עם תאריכי יעד, ומציע תשובה מוכנה."
+          result="אפס אימיילים שנשכחו. ובונוס: התשובות יצאו יותר מקצועיות ועקביות."
+        />
       </div>
     </div>
   )

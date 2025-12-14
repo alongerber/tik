@@ -2,6 +2,8 @@ import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { ArrowRight, FileEdit, Sparkles, Download, Check } from 'lucide-react'
 import LoadingSpinner from '../../shared/LoadingSpinner'
+import BeforeAfter from '../../shared/BeforeAfter'
+import CaseStudy from '../../shared/CaseStudy'
 import { generateProposal } from '../../../services/claude'
 import { exampleProposal, mockProposalResponse } from '../../../data/examples'
 import { generatePDF } from '../../../utils/pdfGenerator'
@@ -62,7 +64,18 @@ export default function ProposalGenerator() {
           </div>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-8">
+        <BeforeAfter
+          before={{
+            time: '1 שעה',
+            description: 'פתיחת תבנית, עריכת טקסטים, התאמת מחירים, עיצוב, שמירה ל-PDF'
+          }}
+          after={{
+            time: '1 דקה',
+            description: 'מילוי פרטים בסיסיים - הצעה מקצועית מוכנה להורדה'
+          }}
+        />
+
+        <div className="grid lg:grid-cols-2 gap-8 mt-8">
           {/* Form */}
           <div className="glass-card rounded-2xl p-6">
             <div className="space-y-4">
@@ -189,6 +202,13 @@ export default function ProposalGenerator() {
             )}
           </div>
         </div>
+
+        <CaseStudy
+          title="איך נולד הכלי"
+          context="כל פעם שהיה צריך לשלוח הצעת מחיר, הייתי פותח את הוורד, משנה את השם, מעדכן את המחיר, מתקן את התאריך, ושוכח לעדכן את לוח הזמנים. הצעות לא עקביות, טעויות מביכות."
+          solution="טופס פשוט שמייצר הצעה מקצועית ועקבית עם כל הפרטים במקום הנכון. כולל PDF להורדה."
+          result="כל הצעה נראית מקצועית. אפס טעויות. והזמן מהבקשה להצעה ירד מ-שעה לדקה."
+        />
       </div>
     </div>
   )
