@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { ChevronDown } from 'lucide-react'
+import { ChevronDown, Phone, MessageCircle } from 'lucide-react'
 
 function Particles() {
   return (
@@ -100,10 +100,31 @@ export default function Hero() {
               <span className="relative z-10">גלו את הכלים</span>
             </button>
           </a>
-          <a href="/resume.pdf" download>
+          <a href="/resume.pdf" download="אלון_גרבר_קורות_חיים.pdf">
             <button className="glass px-8 py-4 rounded-xl text-white font-medium text-lg hover:bg-white/10 transition-all duration-300">
               הורדת קורות חיים
             </button>
+          </a>
+        </div>
+
+        {/* Contact Info */}
+        <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
+          <a
+            href="tel:052-4771113"
+            className="flex items-center gap-2 text-gray-400 hover:text-white transition-colors"
+          >
+            <Phone className="w-4 h-4" />
+            <span>052-4771113</span>
+          </a>
+          <span className="hidden sm:block text-gray-600">|</span>
+          <a
+            href="https://wa.me/972524771113?text=היי%20אלון,%20ראיתי%20את%20תיק%20העבודות%20שלך"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-2 px-4 py-2 bg-green-500/20 text-green-400 rounded-full hover:bg-green-500/30 transition-all"
+          >
+            <MessageCircle className="w-4 h-4" />
+            <span>שלחו הודעה בוואטסאפ</span>
           </a>
         </div>
       </div>
