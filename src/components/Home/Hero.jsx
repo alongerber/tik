@@ -69,12 +69,12 @@ export default function Hero() {
           <TypeWriter text="מומחה אוטומציה תפעולית" delay={80} />
         </p>
 
-        {/* Highlights */}
+        {/* Highlights - Achievement focused */}
         <div className="flex flex-wrap justify-center gap-4 mb-12">
           {[
-            { value: '9', label: 'שנות ניסיון' },
-            { value: 'קוראל', label: 'ספנות ולוגיסטיקה' },
-            { value: '∞', label: 'סקרנות' },
+            { value: '15+', label: 'שנות ניסיון' },
+            { value: '200K₪', label: 'חיסכון שנתי לארגון' },
+            { value: '500+', label: 'אניות בשנה' },
           ].map((item, index) => (
             <div
               key={index}
@@ -89,9 +89,9 @@ export default function Hero() {
 
         {/* Description */}
         <p className="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto mb-12 leading-relaxed">
-          9 שנים של ניסיון תפעולי לימדו אותי לזהות בעיות.
+          15 שנים של ניסיון תפעולי בינלאומי לימדו אותי לזהות בעיות.
           <br />
-          <span className="text-gray-300">הכלים של היום מאפשרים לי לפתור אותן - בלי לכתוב שורת קוד.</span>
+          <span className="text-gray-300">הכלים של היום מאפשרים לי לפתור אותן - ולחסוך לארגון זמן וכסף.</span>
         </p>
 
         {/* CTA Buttons */}

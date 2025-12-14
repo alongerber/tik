@@ -63,25 +63,31 @@ export default function FAQBot() {
     }
   }
 
-  const handleSuggestion = (question) => {
+  const handleSuggestion = async (question) => {
     if (isTyping) return
-    setInput(question)
-    // Use setTimeout to allow state to update before sending
-    setTimeout(() => {
-      const fakeEvent = { target: { value: question } }
-      setInput(question)
-    }, 0)
-  }
 
-  // Separate effect to handle suggestion clicks
-  useEffect(() => {
-    if (input && !isTyping) {
-      const timer = setTimeout(() => {
-        handleSend()
-      }, 100)
-      return () => clearTimeout(timer)
+    // Directly send the suggestion without going through input state
+    setMessages(prev => [...prev, { type: 'user', text: question }])
+    setIsTyping(true)
+
+    try {
+      const response = await askFAQBot(question, messages)
+      setMessages(prev => [...prev, {
+        type: 'bot',
+        text: response.answer,
+        relatedTopics: response.relatedTopics
+      }])
+    } catch (error) {
+      console.error('FAQ Bot error:', error)
+      setMessages(prev => [...prev, {
+        type: 'bot',
+        text: 'מצטער, נתקלתי בבעיה טכנית. נסה שוב בעוד רגע.',
+        relatedTopics: ['שחרור מכס', 'זמני הובלה', 'תנאי מכר']
+      }])
+    } finally {
+      setIsTyping(false)
     }
-  }, [input])
+  }
 
   const handleKeyPress = (e) => {
     if (e.key === 'Enter' && !e.shiftKey) {
