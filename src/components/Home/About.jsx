@@ -1,9 +1,9 @@
-import { Bot, Cpu, Zap, Ship, Target, Workflow } from 'lucide-react'
+import { Lightbulb, Cpu, Zap, Ship, Target, Workflow } from 'lucide-react'
 
 export default function About() {
   const capabilities = [
     { name: 'זיהוי צווארי בקבוק', icon: Target },
-    { name: 'בניית פתרונות עם AI', icon: Bot },
+    { name: 'בניית פתרונות אוטומטיים', icon: Lightbulb },
     { name: 'אוטומציה של תהליכים', icon: Workflow },
     { name: 'חיבור בין מערכות', icon: Cpu },
   ]
@@ -11,7 +11,7 @@ export default function About() {
   const highlights = [
     { icon: Ship, text: 'קוראל - ספנות ולוגיסטיקה בינלאומית' },
     { icon: Cpu, text: 'בניית מערכות אוטומציה מקצה לקצה' },
-    { icon: Bot, text: 'שימוש בכלי AI להשגת תוצאות' },
+    { icon: Lightbulb, text: 'פתרון בעיות בדרכים יצירתיות' },
     { icon: Zap, text: 'ייעול תהליכים תפעוליים' },
   ]
 
@@ -29,7 +29,7 @@ export default function About() {
             </h2>
 
             <p className="text-xl text-gray-300 font-medium mb-6">
-              מתפעול ספנות לאוטומציה מונעת AI.
+              מתפעול ספנות לבניית פתרונות אוטומטיים.
             </p>
 
             <p className="text-gray-400 mb-6 leading-relaxed text-lg">
@@ -38,7 +38,7 @@ export default function About() {
             </p>
 
             <p className="text-gray-300 mb-8 leading-relaxed text-lg">
-              היום, עם כלי AI, אני יכול לבנות פתרונות שפעם דרשו צוות מפתחים -
+              הכלים השתנו. היום אפשר לבנות פתרונות שפעם דרשו צוות מפתחים -
               <span className="gradient-text font-medium"> בלי לכתוב שורת קוד אחת.</span>
               <br />
               התוצאות? אותן תוצאות. הדרך? חדשה לגמרי.

@@ -80,7 +80,7 @@ export default function Hero() {
           {[
             { value: '9', label: 'שנות ניסיון' },
             { value: 'קוראל', label: 'ספנות ולוגיסטיקה' },
-            { value: 'AI', label: 'אוטומציה חכמה' },
+            { value: '∞', label: 'סקרנות' },
           ].map((item, index) => (
             <div
               key={index}
@@ -97,7 +97,7 @@ export default function Hero() {
         <p className="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto mb-12 leading-relaxed">
           9 שנים של ניסיון תפעולי לימדו אותי לזהות בעיות.
           <br />
-          <span className="text-gray-300">כלי AI מאפשרים לי לפתור אותן - בלי לכתוב שורת קוד.</span>
+          <span className="text-gray-300">הכלים של היום מאפשרים לי לפתור אותן - בלי לכתוב שורת קוד.</span>
         </p>
 
         {/* CTA Buttons */}
