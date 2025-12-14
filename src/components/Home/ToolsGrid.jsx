@@ -48,7 +48,7 @@ export default function ToolsGrid() {
   ]
 
   return (
-    <section className="relative py-24">
+    <section id="tools" className="relative py-24">
       <div className="max-w-6xl mx-auto px-6">
         {/* Section header */}
         <div className="text-center mb-16">

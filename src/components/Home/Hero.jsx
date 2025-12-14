@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { ChevronDown } from 'lucide-react'
 
@@ -96,11 +95,11 @@ export default function Hero() {
 
         {/* CTA Buttons */}
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <Link to="/tools/documents">
+          <a href="#tools">
             <button className="btn-glow px-8 py-4 rounded-xl text-white font-medium text-lg relative z-10">
               <span className="relative z-10">גלו את הכלים</span>
             </button>
-          </Link>
+          </a>
           <a href="/resume.pdf" download>
             <button className="glass px-8 py-4 rounded-xl text-white font-medium text-lg hover:bg-white/10 transition-all duration-300">
               הורדת קורות חיים
