@@ -1,5 +1,5 @@
-import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { useState, useEffect, useRef } from 'react'
+import { Link, useLocation } from 'react-router-dom'
 import { ArrowRight, FileEdit, Sparkles, Download, Check } from 'lucide-react'
 import LoadingSpinner from '../../shared/LoadingSpinner'
 import BeforeAfter from '../../shared/BeforeAfter'
@@ -17,6 +17,16 @@ export default function ProposalGenerator() {
   })
   const [generatedContent, setGeneratedContent] = useState(null)
   const [isLoading, setIsLoading] = useState(false)
+  const demoRef = useRef(null)
+  const location = useLocation()
+
+  useEffect(() => {
+    if (location.state?.scrollToDemo && demoRef.current) {
+      setTimeout(() => {
+        demoRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' })
+      }, 100)
+    }
+  }, [location])
 
   const handleGenerate = async () => {
     setIsLoading(true)
@@ -75,7 +85,7 @@ export default function ProposalGenerator() {
           }}
         />
 
-        <div className="grid lg:grid-cols-2 gap-8 mt-8">
+        <div ref={demoRef} className="grid lg:grid-cols-2 gap-8 mt-8 scroll-mt-24">
           {/* Form */}
           <div className="glass-card rounded-2xl p-6">
             <div className="space-y-4">

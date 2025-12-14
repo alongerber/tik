@@ -72,6 +72,7 @@ export default function ToolsGrid() {
             <Link
               key={index}
               to={tool.path}
+              state={{ scrollToDemo: true }}
               className="group glass-card rounded-2xl p-8 card-shine block"
             >
               {/* Icon with gradient background */}

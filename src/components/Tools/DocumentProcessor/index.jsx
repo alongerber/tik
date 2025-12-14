@@ -1,5 +1,5 @@
-import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { useState, useEffect, useRef } from 'react'
+import { Link, useLocation } from 'react-router-dom'
 import { ArrowRight, FileText } from 'lucide-react'
 import DropZone from './DropZone'
 import ResultsDisplay from './ResultsDisplay'
@@ -15,6 +15,17 @@ export default function DocumentProcessor() {
   const [results, setResults] = useState(null)
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState(null)
+  const demoRef = useRef(null)
+  const location = useLocation()
+
+  // Scroll to demo section when coming from home page
+  useEffect(() => {
+    if (location.state?.scrollToDemo && demoRef.current) {
+      setTimeout(() => {
+        demoRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' })
+      }, 100)
+    }
+  }, [location])
 
   const processDocument = async (fileToProcess) => {
     setIsLoading(true)
@@ -93,7 +104,7 @@ export default function DocumentProcessor() {
           }}
         />
 
-        <div className="grid lg:grid-cols-2 gap-8 mt-8">
+        <div ref={demoRef} className="grid lg:grid-cols-2 gap-8 mt-8 scroll-mt-24">
           <div className="glass-card rounded-2xl p-6 min-h-[450px]">
             <DropZone
               onFileSelect={handleFileSelect}

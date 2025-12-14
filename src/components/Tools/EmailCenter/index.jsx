@@ -1,5 +1,5 @@
-import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { useState, useEffect, useRef } from 'react'
+import { Link, useLocation } from 'react-router-dom'
 import { ArrowRight, Mail, Sparkles, Copy, Check, Circle } from 'lucide-react'
 import LoadingSpinner from '../../shared/LoadingSpinner'
 import BeforeAfter from '../../shared/BeforeAfter'
@@ -12,6 +12,16 @@ export default function EmailCenter() {
   const [results, setResults] = useState(null)
   const [isLoading, setIsLoading] = useState(false)
   const [copied, setCopied] = useState(false)
+  const demoRef = useRef(null)
+  const location = useLocation()
+
+  useEffect(() => {
+    if (location.state?.scrollToDemo && demoRef.current) {
+      setTimeout(() => {
+        demoRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' })
+      }, 100)
+    }
+  }, [location])
 
   const handleAnalyze = async () => {
     if (!emailText.trim()) return
@@ -79,7 +89,7 @@ export default function EmailCenter() {
           }}
         />
 
-        <div className="grid lg:grid-cols-2 gap-8 mt-8">
+        <div ref={demoRef} className="grid lg:grid-cols-2 gap-8 mt-8 scroll-mt-24">
           {/* Input */}
           <div className="glass-card rounded-2xl p-6 min-h-[500px] flex flex-col">
             <textarea

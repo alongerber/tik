@@ -21,6 +21,7 @@ export default function Header() {
   const pages = [
     { name: 'תובנות', path: '/insights' },
     { name: 'המסע שלי', path: '/timeline' },
+    { name: 'בלוג', path: '/blog' },
     { name: 'אנליטיקס', path: '/analytics' },
   ]
 

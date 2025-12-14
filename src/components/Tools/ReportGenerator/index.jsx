@@ -1,5 +1,5 @@
-import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { useState, useEffect, useRef } from 'react'
+import { Link, useLocation } from 'react-router-dom'
 import { ArrowRight, BarChart3, Download, Calendar, TrendingUp, AlertTriangle, CheckCircle } from 'lucide-react'
 import LoadingSpinner from '../../shared/LoadingSpinner'
 import BeforeAfter from '../../shared/BeforeAfter'
@@ -40,6 +40,16 @@ export default function ReportGenerator() {
   const [isLoading, setIsLoading] = useState(false)
   const [report, setReport] = useState(null)
   const [selectedWeek, setSelectedWeek] = useState('current')
+  const demoRef = useRef(null)
+  const location = useLocation()
+
+  useEffect(() => {
+    if (location.state?.scrollToDemo && demoRef.current) {
+      setTimeout(() => {
+        demoRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' })
+      }, 100)
+    }
+  }, [location])
 
   const generateReport = async () => {
     setIsLoading(true)
@@ -92,7 +102,7 @@ export default function ReportGenerator() {
           }}
         />
 
-        <div className="grid lg:grid-cols-2 gap-8 mt-8">
+        <div ref={demoRef} className="grid lg:grid-cols-2 gap-8 mt-8 scroll-mt-24">
           {/* Input Panel */}
           <div className="glass-card rounded-2xl p-6">
             <h3 className="text-xl font-bold text-white mb-6">הגדרות דוח</h3>

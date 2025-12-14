@@ -107,18 +107,21 @@ export default function Analytics() {
               <h3 className="text-lg font-bold text-white">צפיות השבוע</h3>
               <BarChart3 className="w-5 h-5 text-gray-400" />
             </div>
-            <div className="flex items-end justify-between gap-2 h-48">
-              {data.weeklyData.map((day, i) => (
-                <div key={i} className="flex-1 flex flex-col items-center gap-2">
-                  <div className="w-full flex-1 flex flex-col justify-end">
-                    <div
-                      className="w-full bg-gradient-to-t from-blue-500 to-purple-500 rounded-t-lg transition-all duration-500 min-h-[4px]"
-                      style={{ height: `${Math.max((day.visits / maxVisits) * 100, 5)}%` }}
-                    />
+            <div className="flex items-end justify-between gap-3 h-40">
+              {data.weeklyData.map((day, i) => {
+                const heightPercent = maxVisits > 0 ? (day.visits / maxVisits) * 100 : 0
+                return (
+                  <div key={i} className="flex-1 flex flex-col items-center h-full">
+                    <div className="flex-1 w-full flex items-end">
+                      <div
+                        className="w-full bg-gradient-to-t from-blue-500 to-purple-500 rounded-t-lg transition-all duration-500"
+                        style={{ height: `${Math.max(heightPercent, 8)}%` }}
+                      />
+                    </div>
+                    <span className="text-xs text-gray-500 mt-2">{day.day}</span>
                   </div>
-                  <span className="text-xs text-gray-500">{day.day}</span>
-                </div>
-              ))}
+                )
+              })}
             </div>
           </div>
 

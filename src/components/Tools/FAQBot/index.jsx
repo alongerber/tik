@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import { ArrowRight, MessageCircle, Send, User, Bot, Sparkles } from 'lucide-react'
 import BeforeAfter from '../../shared/BeforeAfter'
 import CaseStudy from '../../shared/CaseStudy'
@@ -24,6 +24,16 @@ export default function FAQBot() {
   const [input, setInput] = useState('')
   const [isTyping, setIsTyping] = useState(false)
   const messagesEndRef = useRef(null)
+  const demoRef = useRef(null)
+  const location = useLocation()
+
+  useEffect(() => {
+    if (location.state?.scrollToDemo && demoRef.current) {
+      setTimeout(() => {
+        demoRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' })
+      }, 100)
+    }
+  }, [location])
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' })
@@ -136,7 +146,7 @@ export default function FAQBot() {
           }}
         />
 
-        <div className="grid lg:grid-cols-3 gap-8 mt-8">
+        <div ref={demoRef} className="grid lg:grid-cols-3 gap-8 mt-8 scroll-mt-24">
           {/* Chat Window */}
           <div className="lg:col-span-2 glass-card rounded-2xl flex flex-col h-[500px]">
             {/* Messages */}
